@@ -11,14 +11,25 @@ public class Ride {
             laxite;
     public static int id;
 
-    public distance(Ride r) {
-        int curr_x = r.from_x;
-        int dst_x = r.from_y
-        return Math.abs(curr_x - dst_x) + Math.abs(curr_y - dst_y)
+
+    public Ride(String line){
+        String[] tokens = line.split(" ");
+        this.from_x = tokens[0];
+        this.from_y = tokens[1];
+        this.to_x = tokens[2];
+        this.to_y = tokens[3];
+        this.start = tokens[4];
+        this.deadline = tokens[5];
+        this.id = id+=;
+        this.laxite = 0;
     }
 
-    // Calculates distance between (curr_x, curr_y) et (dst_x, dst_y)
-    public int distanceTo(curr_x, curr_y, dst_x, dst_y) {
+    // Distance between two rides
+    public distance(Ride r) {
+        int curr_x = r.from_x;
+        int curr_y = r.from_y;
+        int dst_x = r.to_x;
+        int dst_y = r.to_y;
         return Math.abs(curr_x - dst_x) + Math.abs(curr_y - dst_y)
     }
 }
