@@ -1,50 +1,77 @@
 package hashcode;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.lang.Math;
 
+
+/**
+ * Every time a ride finishes, pick K random elements from the assignedRides list
+ * and from that list pick the closest pickup point
+ */
+
 public class ShortestDistance {
-	public String ret = "";
-	public int row;
-	public int col;
-	public int f;
-	
-	public String compute(int row, int col, int cars, int rides, int bonus, int steps) {
-		 String res = new String();
+    public String ret = "";
+    public int row;
+    public int col;
+    public int f;
+    public HashSet<Ride> rides;
+    public HashMap<Integer, SortedSet<Ride>> assignedRides;
+    public int cars;
 
-		 Set<Integer> done = new HashSet<>();
-		 
-		 for (int i = 0; i < f; ++i) {
-			 res += "" + nb_ride_per_car;
-			 int ride;
-			 
-			 for (int j = 0; j < nb_ride_per_car; ++j) {
-				 do {
-					 ride = r.nextInt(n);
-				 } while(done.contains(ride));
-			 
-				 res += " " + ride;
-				 done.add(ride);
-			 }
-			 res += "\n";
-		 }
-		 
-		 return res;
-	}
 
-	// Calculates distance between (curr_x, curr_y) et (dst_x, dst_y)
-	public int distanceTo(curr_x, curr_y, dst_x, dst_y) {
-		return Math.abs(curr_x - dst_x) + Math.abs(curr_y - dst_y)
-	}
+    public ShortestDistance(HashSet<Ride> rs, int k) {
+        this.rides = rs;
+        compute(k);
+    }
 
-	// (x, y) coordinates of the car
-	// k number of lines to take from file
-	public void dispatchCar(x, y, k) {
-		String line = "";
+    /**
+     * Takes the latest element in destList, extracts the coordinates
+     * and takes 'k' random elements from the destinationList
+     * picks the closest one to latest position and appends it
+     *
+     * @param k How many assignedRides to check on the list
+     * @return String with output
+     */
+    public String compute(int k) {
+        Random r = new Random();
+        int i = 0;
+        // Pick the closest available ride
+        while (!rides.isEmpty()) {
+            int ride_index = r.nextInt(rides.size());
+            int car = i % cars;
 
-		ret += line;
+            // Next destination calc //
+            // Grab latest dest
+            assignedRides.get(car);
 
-	}
+
+            rides.remove(car);
+            i++;
+        }
+
+        // Build output string
+        for (Integer s : assignedRides.keySet()) {
+            ret += assignedRides.get(s) + "\n";
+        }
+        return ret;
+
+    }
+
+    /**
+     * Find shortest next target for @param car
+     * from @param k random destination
+     *
+     * @param car Destination from
+     * @param k   Number of randoms on list
+     */
+    public void nextDest(int car, int k) {
+
+    }
+
+    // Calculates distance between (curr_x, curr_y) et (dst_x, dst_y)
+    public int distanceTo(int curr_x, int curr_y, int dst_x, int dst_y) {
+        return Math.abs(curr_x - dst_x) + Math.abs(curr_y - dst_y);
+    }
+
+
 }
