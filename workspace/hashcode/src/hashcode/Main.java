@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import hashcode.Radom;
 
@@ -21,12 +23,13 @@ public class Main {
 			row = Integer.parseInt(utils[1]);
 			f = Integer.parseInt(utils[2]);
 			n = Integer.parseInt(utils[3]);
-			Ride[] rides = new Ride[n];
-			String line = "";
-			int i = 0;
+			b = Integer.parseInt(utils[4]);
+			t = Integer.parseInt(utils[5]);
+			Set<Ride> undone = new HashSet<>();
+			
+			String line;
 			while((line = bf.readLine()) != null) {
-				rides[i] = new Ride(line);
-				i++;
+				undone.add(new Ride(line));
 			}
 			//hashcode.Radom solution = new Radom();
 			//String res = solution.compute(col, row, f, n);
@@ -39,10 +42,10 @@ public class Main {
 //			String res = solution.compute(col, row, f, n);
 
             // Eat it line by line
-			String res = sd.compute(ln);
-			System.out.println(res);
+			//String res = sd.compute(ln);
+			//System.out.println(res);
 			
-			WriteFile.writeLine(bw, res);
+			//WriteFile.writeLine(bw, res);
 			bw.close();
 			
 		} catch (FileNotFoundException e) {
