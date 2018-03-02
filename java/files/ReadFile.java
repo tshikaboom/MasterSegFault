@@ -18,7 +18,9 @@ public class ReadFile {
 	    String line;
 	    
 	    while( (line = ReadFile.readLine(bf)) != null) {
-		System.out.println("red: " + line);
+			System.out.println("red: " + line);
+			String[] data = line.split(" ");
+
 	    }
 	} catch (IOException  e) {
 	    e.printStackTrace();

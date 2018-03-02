@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+
 import hashcode.Radom;
 
 public class Main {
-	
 	public static void main(String[] args) {
 		try {
 			BufferedReader bf = ReadFile.openFile(args[0]);
@@ -38,9 +38,9 @@ public class Main {
 			//String res = modulo.compute(col, row, f, n);
 			
 //			hashcode.Radom solution = new Radom();
-			ShortestDistance sd = new ShortestDistance();
+			//ShortestDistance sd = new ShortestDistance(undone, );
 //			String res = solution.compute(col, row, f, n);
-
+			TurnByTurn tb = new TurnByTurn(f, t, undone);
             // Eat it line by line
 			//String res = sd.compute(ln);
 			//System.out.println(res);
